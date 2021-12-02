@@ -1,9 +1,9 @@
 section	.bss
-    %define buffer_len 1
-    buffer: resb buffer_len
-    length: resd 1
+	%define buffer_len 1
+	buffer: resb buffer_len
+	length: resd 1
 	
-    start: resd 1
+	start: resd 1
 	
 	instruction: resb 1024
 	instrNr: resd 1
@@ -32,20 +32,20 @@ section	.text
 	global _start
 	
 _start:
-    mov [length], dword 0
-    mov [instrStart], dword 0
+	mov [length], dword 0
+	mov [instrStart], dword 0
 	mov [xpos], dword 0
-    mov [ypos], dword 0
-    mov [yposb], dword 0
+	mov [ypos], dword 0
+	mov [yposb], dword 0
 	
-    call doPartOne
+	call doPartOne
 	
 	mov edx, 44
 	mov ecx, pOneTxt
 	call printMsg
 	
 	mov eax, 0xa
-    call printChar
+	call printChar
 	
 	mov edx, 21
 	mov ecx, horposTxt
@@ -55,7 +55,7 @@ _start:
 	call printNum
 	
 	mov eax, 0xa
-    call printChar
+	call printChar
 	
 	mov edx, 16
 	mov ecx, depthposTxt
@@ -65,7 +65,7 @@ _start:
 	call printNum
 	
 	mov eax, 0xa
-    call printChar
+	call printChar
 	
 	mov edx, 8
 	mov ecx, answerTxt
@@ -76,14 +76,14 @@ _start:
 	call printNum
 	
 	mov eax, 0xa
-    call printChar
+	call printChar
 	
 	mov edx, 44
 	mov ecx, pTwoTxt
 	call printMsg
 	
 	mov eax, 0xa
-    call printChar
+	call printChar
 	
 	mov edx, 21
 	mov ecx, horposTxt
@@ -93,7 +93,7 @@ _start:
 	call printNum
 	
 	mov eax, 0xa
-    call printChar
+	call printChar
 	
 	mov edx, 16
 	mov ecx, depthposTxt
@@ -103,7 +103,7 @@ _start:
 	call printNum
 	
 	mov eax, 0xa
-    call printChar
+	call printChar
 	
 	mov edx, 8
 	mov ecx, answerTxt
@@ -113,16 +113,16 @@ _start:
 	imul eax, [xpos]
 	call printNum
 	
-    mov eax, 1
+	mov eax, 1
 	int 0x80
 	
 
 
 printMsg:
-    mov ebx, 1
+	mov ebx, 1
 	mov eax, 4
 	int 0x80
-    ret
+	ret
 
 
 
@@ -130,7 +130,7 @@ doPartOne:
 	call getInstr
 	cmp eax, 0
 	jle doPartOneEnd
-    call getFirstLetter
+	call getFirstLetter
 	
 	cmp [substr], byte 0x66 ; forward
 	jne doPartOneNotForward
@@ -166,33 +166,33 @@ doPartOne:
 getFirstLetter:
 	mov [start], dword 0
 	mov [strlen], dword 1
-    mov [substr], dword 0
+	mov [substr], dword 0
 	mov dword [string], instruction
-    mov esi, [string]
-    add esi, [start]
-    mov edi, substr
-    mov ecx, [strlen]
-    rep movsb
-    ret
+	mov esi, [string]
+	add esi, [start]
+	mov edi, substr
+	mov ecx, [strlen]
+	rep movsb
+	ret
 
 getInstNumber:
 	mov [strlen], dword 1
-    mov [instrNr], dword 0
+	mov [instrNr], dword 0
 	mov dword [string], instruction
-    mov esi, [string]
-    add esi, [start]
-    mov edi, instrNr
-    mov ecx, [strlen]
-    rep movsb
+	mov esi, [string]
+	add esi, [start]
+	mov edi, instrNr
+	mov ecx, [strlen]
+	rep movsb
 	
 	sub [instrNr], byte 0x30
-    ret
+	ret
 
 
 
 getInstr:
 	mov [instruction], dword 0
-    mov [length], dword 0
+	mov [length], dword 0
 	mov edi, instruction
 	add edi, [length]
 	mov eax, [length]
@@ -217,49 +217,49 @@ getInstr:
 
 
 printNum:
-    push eax
-    push ecx
-    push edx
-    push ebx
-    mov ecx, 10
+	push eax
+	push ecx
+	push edx
+	push ebx
+	mov ecx, 10
 printNumLoop: 
-    mov edx,0
-    call divbyten
-    add edx, 0x30
-    push edx
-    dec ecx
-    cmp eax, 0
-    je printNumPart2
-    cmp ecx, 0
-    jne printNumLoop
+	mov edx,0
+	call divbyten
+	add edx, 0x30
+	push edx
+	dec ecx
+	cmp eax, 0
+	je printNumPart2
+	cmp ecx, 0
+	jne printNumLoop
 printNumPart2:
-    mov ebx, ecx
-    mov ecx, 10
-    sub ecx, ebx
+	mov ebx, ecx
+	mov ecx, 10
+	sub ecx, ebx
 printNumLoop2:
-    pop eax
-    call printChar
-    dec ecx
-    jne printNumLoop2
-    pop ebx
-    pop edx
-    pop ecx
-    pop eax
-    ret
+	pop eax
+	call printChar
+	dec ecx
+	jne printNumLoop2
+	pop ebx
+	pop edx
+	pop ecx
+	pop eax
+	ret
 
 divbyten:
-    push ebx
-    mov ebx, 10
-    mov edx, 0
-    idiv ebx
-    pop ebx
-    ret
+	push ebx
+	mov ebx, 10
+	mov edx, 0
+	idiv ebx
+	pop ebx
+	ret
 	
 printChar:
-    push ecx
-    push edx
-    mov [character], eax
-    mov edx, 1
+	push ecx
+	push edx
+	mov [character], eax
+	mov edx, 1
 	mov ecx, character
 	mov ebx, 1
 	mov eax, 4
