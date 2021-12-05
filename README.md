@@ -6,3 +6,4 @@ A different language every day!
 - Day  2: Assembly (NASM)
 - Day  3: Open Office Calc
 - Day  4: Unity (With visualisation)
+- Day  5: Python
