@@ -1,1 +1,0 @@
-node "Day 6.js"
