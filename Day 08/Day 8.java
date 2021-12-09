@@ -19,15 +19,15 @@ public class Main {
 		}
 	}
 	
-    public static void main(String[] args) {
-        File file=new File("Input.txt");
+	public static void main(String[] args) {
+		File file=new File("Input.txt");
 		//File file=new File("Example.txt");
 		
 		int[] Occurences = new int[10];
 		int part2 = 0;
 		try {
-            Scanner inputData = new Scanner(file);
-            while (inputData.hasNextLine()) {
+			Scanner inputData = new Scanner(file);
+			while (inputData.hasNextLine()) {
 				String[] data = inputData.nextLine().split(" \\| ");
 				
 				String[] Codes = data[0].split(" ", 0);
@@ -40,11 +40,10 @@ public class Main {
 					Occurences[n]++;
 					part2 += n*Math.pow(10, (l-1)-i);
 				}
-            }
-            inputData.close();
-        }catch (FileNotFoundException e) { e.printStackTrace(); }
-		
+			}
+			inputData.close();
+		}catch (FileNotFoundException e) { e.printStackTrace(); }
 		System.out.println("Answer Part 1: "+(Occurences[1]+Occurences[4]+Occurences[7]+Occurences[8]));
 		System.out.println("Answer Part 2: "+part2);
-    }
+	}
 }
