@@ -10,3 +10,4 @@ Mostly doing a different language every day, but due to personal stuff I'll some
 - Day  6: Javascript
 - Day  7: Javascript
 - Day  8: Java
+- Day  9: Ruby
