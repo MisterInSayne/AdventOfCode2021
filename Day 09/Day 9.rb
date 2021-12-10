@@ -64,5 +64,6 @@ $map.each_key { |pos|
 }
 
 puts "Answer part 1: #{part1}"
+
 part2 = part2.sort_by{ |a| a }.reverse
 puts "Answer part 2: #{part2[0]}, #{part2[1]} and #{part2[2]} = #{part2[0]*part2[1]*part2[2]}"
