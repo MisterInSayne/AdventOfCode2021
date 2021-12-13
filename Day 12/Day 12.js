@@ -1,5 +1,4 @@
 const fs = require('fs')
-const util = require('util');
 
 class place {
 	big; name; connects = {};;
