@@ -14,14 +14,12 @@ var pieces = data.split("\r\n\r\n");
 var positionData = pieces[0].split("\r\n");
 var foldData = pieces[1].split("\r\n");
 
-
 var posdata = {};
 for (const p in positionData) {
 	var posstr = positionData[p].split(",");
 	var pos = [parseInt(posstr[0]), parseInt(posstr[1])];
 	posdata[pos] = pos;
 }
-//console.log(posdata);
 
 var p1 = 0;
 var sizeX = 0;
@@ -29,12 +27,10 @@ var sizeY = 0;
 for (const f in foldData) {
 	var dir = (foldData[f].charAt(11)=="x"?0:1);
 	var place = parseInt(foldData[f].substr(13));
-	//console.log("Fold "+dir+" along "+place);
 	var newposdata = {};
 	sizeX = 0;
 	sizeY = 0;
 	for(const p in posdata){
-		//console.log(p);
 		var pos = posdata[p];
 		if(pos[dir] > place){
 			pos[dir] = place - (pos[dir]-place);
@@ -45,13 +41,9 @@ for (const f in foldData) {
 	}
 	if(f == 0){
 		console.log("Answer Part 1: "+Object.keys(newposdata).length);
-		//console.log(newposdata);
 	}
-	//console.log("Size: "+sizeX+"x"+sizeY);
 }
 console.log("Answer Part 2: ");
 var Text = Array.from({length: sizeY + 1}, e=>Array(sizeX + 1).fill(" "));
 for(const p in posdata){ Text[posdata[p][1]][posdata[p][0]] = "#"; }
 for(const t in Text){ console.log(Text[t].join("")); }
-
-
