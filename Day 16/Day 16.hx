@@ -9,8 +9,8 @@ class Day16 {
 		var bits = ["0" => "0000", "1" => "0001", "2" => "0010", "3" => "0011", "4" => "0100", "5" => "0101", "6" => "0110", "7" => "0111", "8" => "1000", "9" => "1001", "A" => "1010", "B" => "1011", "C" => "1100", "D" => "1101", "E" => "1110", "F" => "1111"];
 		var bitData:String = "";
 		try {
-            while (true) {
-                line = Sys.stdin().readLine();
+			while (true) {
+				line = Sys.stdin().readLine();
 				var arr = line.split('');
 				for(a in arr){
 					bitData += bits[a];
@@ -18,20 +18,20 @@ class Day16 {
 			}
 		} catch (e:haxe.io.Eof) {}
 		var result = readData(bitData, 0, "000");
-    	trace('Answer part 1: $versionSum');
-    	trace('Answer part 2: ${result[1]}');
+		trace('Answer part 1: $versionSum');
+		trace('Answer part 2: ${result[1]}');
 	}
 	
 	static public function readData(data:String, subPackets:Int, type:String):Array<Int64> {
-	    var pos:Int = 0;
-	    var foundPackets:Int = 0;
+		var pos:Int = 0;
+		var foundPackets:Int = 0;
 		var outData:Array<Int64> = [];
-	    while(pos < data.length-7 && (subPackets == 0 || foundPackets < subPackets)){
+		while(pos < data.length-7 && (subPackets == 0 || foundPackets < subPackets)){
 			versionSum += toNumber(data.substr(pos, 3)).low;
-    		pos+=3;
-    		var typeID:String = data.substr(pos, 3);
-    		pos+=3;
-    		if(typeID == "100"){
+			pos+=3;
+			var typeID:String = data.substr(pos, 3);
+			pos+=3;
+			if(typeID == "100"){
 				var foundEnd:Bool = false;
 				var numberData:String = "";
 				while(!foundEnd){
@@ -41,18 +41,18 @@ class Day16 {
 					pos+=4;
 				}
 				outData.push(toNumber(numberData));
-    		}else{
-    		    var sizeIndicator = data.charAt(pos);
-    			var size:Int = (sizeIndicator == "0")?15:11;
-			    pos+=1;
+			}else{
+				var sizeIndicator = data.charAt(pos);
+				var size:Int = (sizeIndicator == "0")?15:11;
+				pos+=1;
 				var length:Int = toNumber(data.substr(pos, size)).low;
-			    pos+=size;
+				pos+=size;
 				var packet = (sizeIndicator == "0")?readData(data.substr(pos, length), 0, typeID):readData(data.substr(pos), length, typeID);
 				pos+=packet[0].low;
 				outData.push(packet[1]);
-    		}
+			}
 			foundPackets++;
-	    }
+		}
 		var out:Int64 = 0;
 		switch type{
 			case "000": out = outData.fold(function(num, total) return total += num, 0);
@@ -67,13 +67,13 @@ class Day16 {
 	}
 	
 	public static function toNumber(binary:String):Int64 {
-        var value:Int64 = 0;
-        var l:Int = (binary.length-1);
-        for(power in 0...l+1) {
-            if(binary.charAt(l-power) == '1') {
-                value += haxe.Int64.fromFloat(Math.pow(2, power));
-            }
-        }
-        return value;
-    }
+		var value:Int64 = 0;
+		var l:Int = (binary.length-1);
+		for(power in 0...l+1) {
+			if(binary.charAt(l-power) == '1') {
+				value += haxe.Int64.fromFloat(Math.pow(2, power));
+			}
+		}
+		return value;
+	}
 }
