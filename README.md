@@ -17,3 +17,4 @@ Mostly doing a different language every day, but due to personal stuff I'll some
 - Day 13: Javascript
 - Day 14: Javascript
 - Day 15: Javascript
+- Day 16: Haxe
