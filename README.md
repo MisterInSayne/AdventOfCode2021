@@ -19,3 +19,4 @@ Mostly doing a different language every day, but due to personal stuff I'll some
 - Day 15: Javascript
 - Day 16: Haxe
 - Day 17: Javascript
+- Day 18: Javascript
