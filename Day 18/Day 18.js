@@ -13,8 +13,6 @@ try {
 	console.error(err)
 }
 
-//console.log(input);
-
 function sum(data){
 	if(Array.isArray(data)){
 		return (sum(data[0])*3)+(sum(data[1])*2);
@@ -109,13 +107,9 @@ for(const l of input){
 	while(chopped || exploded){
 		exploded = false;
 		chopped = false;
-		//console.log("explode: "+JSON.stringify(Data));
 		explode(Data, 0);
-		//console.log("chop: "+JSON.stringify(Data));
 		chop(Data, 0);
 	};
-	//console.log("Result: "+JSON.stringify(Data));
-	//console.log("------------------------------------------------");
 }
 
 console.log("Answer part 1: "+sum(Data));
@@ -129,9 +123,7 @@ for(const l in input){
 			while(chopped || exploded){
 				exploded = false;
 				chopped = false;
-				//console.log("explode: "+JSON.stringify(Data));
 				explode(testData, 0);
-				//console.log("chop: "+JSON.stringify(Data));
 				chop(testData, 0);
 			};
 			var result = sum(testData);
