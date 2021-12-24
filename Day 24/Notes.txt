@@ -1,0 +1,129 @@
+To get 0:
+Highest: 29989297949519
+Lowest: 19518121316118
+
+
+possible numbers for each slot:
+0: 1..2
+1: 9
+2: 5..9
+3: 1..8
+4: 8..9
+5: 1..2
+6: 2..9
+7: 1..7
+8: 3..9
+9: 1..4
+10: 6..9
+11: 1..5
+12: 1
+13: 8..9
+
+0:
+with 1..9 it's impossible so is always passing
+in[0]+14
+Only fails if in[0] = 14.
+
+1:
+in[0]+14%26 is 15..25
+with 1..9 it's impossible so is always passing
+*26
+in[1]+2
+
+2:
+in[1]+2%26 is 3..12
+add 14
+with 1..9 it's impossible so is always passing
+*26
+in[2]+1
+
+3:
+same ^
+*26
+in[3]+13
+
+4:
+same ^
+*26
+in[4]+5 -- stripped or replaced by 5
+
+5:
+this strips or replaces 4
+to strip:
+in[5] == ((in[4]+5)%26)-12
+in[5] == in[4]-7
+in[4] = 8..9
+in[5] = 1..2
+
+if replaces in[5]+5
+
+6:
+this strips 3 or replaces 5
+to strip 3:
+in[6] = ((in[3]+13)%26)-12
+in[6] = in[3]+1
+in[3] = 1..8
+in[6] = 2..9
+
+if replaces in[6]+5
+
+7:
+a = either in[2]+1 or in[5]+5 or in[6]+5
+(a%26)+12 = 14..26(0)
+with 1..9 impossible to fail no matter what
+*26
+in[7]+9
+7 is now top.
+
+8:
+this strips or replaces 7.
+to strip 7:
+in[8] = ((in[7]+9)%26)-7
+in[8] = in[7]+2
+in[7] = 1..7
+in[8] = 3..9
+if replaces in[8]+3;
+
+9:
+a = either in[2]+1 or in[8]+3
+(a%26)+13 = 15..25
+with 1..9 impossible to fail no matter what
+*26
+in[9]+13
+9 is now top.
+
+10:
+this strips or replaces 9.
+to strip 9:
+in[10] = ((in[9]+13)%26)-8
+in[10] = in[9]+5
+in[9] = 1..4
+in[10] = 6..9
+if replaces in[10]+2;
+
+11:
+this strips 2 or replaces 10.
+to strip 2:
+in[11] = ((in[2]+1)%26)-5
+in[11] = in[2]-4
+in[2] = 5..9
+in[11] = 1..5
+if replaces in[11]+2;
+
+12:
+this strips 1 or replaces 11.
+to strip 1:
+in[12] = ((in[1]+2)%26)-10
+in[12] = in[1]-8
+in[1] = 9
+in[12] = 1
+if replaces in[12]+11;
+
+13:
+this strips 0 or replaces 12.
+to strip 0:
+in[13] = ((in[0]+14)%26)-7
+in[13] = in[0]+7
+in[0] = 1..2
+in[13] = 8..9
+if replaces in[13]+8;
