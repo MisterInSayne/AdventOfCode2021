@@ -26,3 +26,4 @@ Mostly doing a different language every day, but due to personal stuff I'll some
 - Day 22: Javascript
 - Day 23: Javascript
 - Day 24: Javascript
+- Day 25: Javascript
